@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html>
+
+<script runat="server">
+
+</script>
+<style>
+    *{
+        margin:0 auto;
+    }
+</style>
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>SK8MAFIA</title>
+    <style>
+    *{margin:0; padding:0; box-sizing:border-box;}
+    ol,ul{list-style:none;}
+    body{color:#fff; font-family:"맑은 고딕",나눔고딕,굴림,돋움,sans-serif;line-height:1.2;}
+    a{text-decoration:none;color:#fff; font-family:"맑은 고딕",나눔고딕,굴림,돋움,sans-serif;}
+    div#infoMenu{background:black;  height:50px;}
+    div#infoMenu ul#info{float:right;padding-top:13px;margin-right:40px;}
+    div#infoMenu ul#info li{display:inline; padding-right:5px;}
+    header{height:130px; background:black; }
+    header div.inner img{float:left; margin:30px;}
+    header div.inner nav ul#navi{float:right; margin-top:60px; margin-right:40px;}
+    header div.inner nav ul#navi li{display:inline; font-size:30px; padding:10px;}
+    footer.bottom{background:black; font-size:20px; height:150px; padding:50px; line-height:35px;}
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="infoMenu">
+	    <ul id="info">
+	    <% 
+            if (Session["id"] != null){%>
+		        <li><a href="Logout.aspx">로그아웃</a></li>
+		        <li><a href="#">장바구니</a></li>
+                <%if((Session["id"].ToString()).Equals("admin")){%>
+                    <li><a href="MemberList.aspx">회원목록</a></li>                  
+                <%}else{ %>
+                    <li><a href="MyPage.aspx">마이페이지</a></li>
+                <%} %>
+	        <%}else{ %>
+		        <li><a href="Login.aspx">로그인</a></li>
+		        <li><a href="Member.aspx">회원가입</a></li>	        
+            <%} %>
+	    </ul>	
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:white">
+    <header>
+	    <div class="inner">
+		    <a href="Index.aspx"><img src="./images/logo.png" alt="logo"></a>
+		    <nav>
+			    <ul id="navi">
+				    <li><a href="About.aspx">ABOUT</a></li>
+				    <li><a href="Store.aspx">STORE</a></li>
+				    <li><a href="NoticeList.aspx">NOTICE</a></li>
+				    <li><a href="Videos.aspx">VIDEOS</a></li>
+			    </ul>
+		    </nav>
+	    </div>
+    </header>
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    <footer class="bottom">
+    201707056 - 여수향 © 2018.12.14<br>
+    참조 : SK8MAFIA, NOLLIE SKATEBOARDING, monopatin
+    </footer>
+    </form>
+</body>
+</html>
